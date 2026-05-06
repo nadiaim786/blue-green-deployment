@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-deployment
+  namespace: expt
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bg-app
+      version: green
+  template:
+    metadata:
+      labels:
+        app: bg-app
+        version: green
+    spec:
+      containers:
+        - name: app
+          image: exp2:v2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
